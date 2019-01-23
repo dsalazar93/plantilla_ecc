@@ -20,10 +20,39 @@ module.exports = {
         }
       },
       {
+        // test: que tipo de archivo quiero reconocer,
+        // use: que loader se va a encargar del archivo
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+          // ['style-loader','css-loader']
+          // fallback: 'style-loader',
+          use: "css-loader"
+        }),
+      },
+      {
+        // test: que tipo de archivo quiero reconocer,
+        // use: que loader se va a encargar del archivo
         test: /\.styl$/,
         use: ExtractTextPlugin.extract({
-          use: "stylus-loader"
-        })
+          // ['style-loader','css-loader']
+          // fallback: 'style-loader',
+          use: [
+            "css-loader",
+            {
+              loader: 'stylus-loader',
+              options: {
+                use: [
+                  require('nib'),
+                  require('rupture')
+                ],
+                import: [
+                  '~nib/lib/nib/index.styl',
+                  '~rupture/rupture/index.styl'
+                ]
+              }
+            }
+          ]
+        }),
       },
       {
         test: /\.(gif|svg|jpg|png|woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
@@ -32,7 +61,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new ExtractTextPlugin("style.css")
+    new ExtractTextPlugin("assets/css/[name].css")
   ],
   target: 'web',
   stats: {
