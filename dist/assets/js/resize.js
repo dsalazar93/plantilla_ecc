@@ -9,8 +9,8 @@ var basePage = {
 };
 
 function getPageSize() {
-  pageHeight = document.querySelector('#container').clientHeight
-  pageWidth = document.querySelector('#container').clientWidth
+  pageHeight = document.querySelector('#appTemplate').clientHeight
+  pageWidth = document.querySelector('#appTemplate').clientWidth
 }
 
 function scalePages(page, maxWidth, maxHeight) {            
@@ -27,10 +27,13 @@ function scalePages(page, maxWidth, maxHeight) {
   page.setAttribute('style', '-webkit-transform:scale(' + basePage.scale + ');left:' + newLeftPos + 'px;top:' + newTopPos + 'px;');
 }
 
-var $page = document.querySelector('.page_content')
-
 //using underscore to delay resize method till finished resizing window
 window.addEventListener('resize', function (){
+  var $page = document.querySelector('#appContent')
   getPageSize()
   scalePages($page, pageWidth, pageHeight)
 })
+
+var $page = document.querySelector('#appContent')
+getPageSize()
+scalePages($page, pageWidth, pageHeight)
