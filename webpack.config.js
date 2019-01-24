@@ -12,7 +12,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)?$/,
         loader: 'babel-loader',
         exclude: /(node_modules)/,
         query: {
@@ -20,24 +20,16 @@ module.exports = {
         }
       },
       {
-        // test: que tipo de archivo quiero reconocer,
-        // use: que loader se va a encargar del archivo
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
-          // ['style-loader','css-loader']
-          // fallback: 'style-loader',
           use: "css-loader"
         }),
       },
       {
-        // test: que tipo de archivo quiero reconocer,
-        // use: que loader se va a encargar del archivo
         test: /\.styl$/,
         use: ExtractTextPlugin.extract({
-          // ['style-loader','css-loader']
-          // fallback: 'style-loader',
           use: [
-            "css-loader",
+            "css-loader?url=false",
             {
               loader: 'stylus-loader',
               options: {
@@ -55,9 +47,21 @@ module.exports = {
         }),
       },
       {
-        test: /\.(gif|svg|jpg|png|woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: "file-loader",
-      }       
+        test: /\.(jpg|png|gif|svg)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 300000, // Max 300Kb,
+              name: 'assets/css/img/[name].[ext]'
+            }
+          }
+        ]
+      },
+      // {
+      //   test: /\.(gif|svg|jpg|png|woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+      //   loader: "file-loader",
+      // }       
     ]
   },
   plugins: [

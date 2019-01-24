@@ -12,7 +12,7 @@ body {
   background-color: #52a5de;
 }
 #appContent {
-  background-color: #ee233b;
+  background-image: url("./img/otonio.jpg");
   width: 1366px;
   height: 768px;
   -ms-transform-origin: top left;
