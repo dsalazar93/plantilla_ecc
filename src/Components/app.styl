@@ -12,7 +12,7 @@ body
   background-color #52a5de
 
 #appContent
-  background-image url('./img/otonio.jpg')
+  // background-image url('./img/otonio.jpg')
   width 1366px
   height 768px
   -ms-transform-origin top left
@@ -21,12 +21,63 @@ body
   -webkit-transition all 500ms ease-in-out !important
   transition all 500ms ease-in-out !important
   position absolute
-  img
-    float left
-    margin 20px
-  p
-    position absolute
-    bottom 20px
-    left 20px
-    right 20px
-    text-align center
+  padding 30px 10px 20px 10px
+  background-color #f4cb12
+  // img
+  //   float left
+  //   margin 20px
+  // p
+  //   position absolute
+  //   bottom 20px
+  //   left 20px
+  //   right 20px
+  //   text-align center
+  #appMainBox
+    background-color lightblue
+    position relative
+    width 100%
+    height 100%
+    perspective 1200px
+    transform-style preserve-3d
+    .appPages
+      width 100%
+      height 100%
+      position absolute
+      top 0
+      left 0
+      visibility hidden
+      overflow hidden
+      backface-visibility hidden
+      transform translate3d(0,0,0)
+    .appPage-current
+      visibility visible
+
+    .appPage-0
+      background-image url('./img/blue.jpg')
+    .appPage-1
+      background-image url('./img/sunflower.jpg')
+    .appPage-2
+      background-image url('./img/cyber.jpg')
+    .appPage-3
+      background-image url('./img/otonio.jpg')
+    #appPagination
+      position absolute
+      z-index 999
+      left 50%
+      transform translateX(-50%)
+      bottom 20px
+      background-color #edff45
+      width 200px
+      height 60px
+      display flex
+      flex-direction row
+      justify-content center
+      align-items center
+      .appPaginationButtons
+        font-size 36px
+        color #0698CA
+        margin 3px
+        font-weight bold
+        cursor pointer
+
+
