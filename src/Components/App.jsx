@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './app.styl'
 
+import 'animate.css'
+
 import img_blue from './img/blue.jpg'
 import img_sunflower from './img/sunflower.jpg'
 import img_cyber from './img/cyber.jpg'
@@ -28,9 +30,7 @@ class App extends Component{
         this.setState({
           currentPage: this.state.currentPage - 1
         }, function(){
-          console.log(this.state.currentPage)
-          this.hidePreviousPage(pageToExit)
-          this.displayChoicedPage()
+          this.hidePreviousPage(pageToExit, 'slideOutLeft')
         })
       }
     } else {
@@ -38,16 +38,20 @@ class App extends Component{
         this.setState({
           currentPage: this.state.currentPage + 1
         }, function(){
-          this.hidePreviousPage(pageToExit)
-          this.displayChoicedPage()
+          this.hidePreviousPage(pageToExit, 'slideOutRight')
+          
         })
       }
     }
   }
 
-  hidePreviousPage(page){
+  hidePreviousPage(page, animation){
     let currentPageDisplayed = this.state.AllPages[page]
-    currentPageDisplayed.classList.remove('appPage-current')
+    currentPageDisplayed.classList.add('animated', animation, 'fast')
+    setTimeout(() => {
+      this.displayChoicedPage()
+      currentPageDisplayed.classList.remove('appPage-current', animation)
+    }, 600)
   }
 
   displayChoicedPage(){
